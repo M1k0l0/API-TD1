@@ -1,0 +1,168 @@
+openapi: 3.0.0
+info:
+  title: Library management
+  description: Library management
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/HEIMIKOLO2/API-TD1/1.0.0
+paths:
+  /books:
+    get:
+      summary: List books
+      parameters:
+      - name: bookName
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+      responses:
+        "200":
+          description: List of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Books'
+    put:
+      summary: Update a book
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Books'
+        required: true
+      responses:
+        "200":
+          description: Book updated successfully.
+    post:
+      summary: Create a book
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Books'
+        required: true
+      responses:
+        "201":
+          description: Book created successfully.
+    delete:
+      summary: Delete a book
+      parameters:
+      - name: id
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Book deleted successfully
+  /authors:
+    get:
+      summary: List authors
+      parameters:
+      - name: authorName
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: List of authors.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+    put:
+      summary: Update a author
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        "200":
+          description: Author updated successfully.
+    post:
+      summary: Add a author
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        "201":
+          description: Author added successfully.
+    delete:
+      summary: Delete a author
+      parameters:
+      - name: id
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Author deleted successfully
+components:
+  schemas:
+    Books:
+      type: object
+      properties:
+        id:
+          type: integer
+        bookName:
+          type: string
+        author:
+          type: string
+        pageNumbers:
+          type: integer
+        topic:
+          type: string
+          enum:
+          - ROMANCE
+          - COMEDY
+          - OTHER
+        releaseDate:
+          type: string
+          format: date
+    Author:
+      type: object
+      properties:
+        id:
+          type: integer
+        authorName:
+          type: string
+        sex:
+          type: string
+          enum:
+          - M
+          - F
