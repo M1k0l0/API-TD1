@@ -52,7 +52,7 @@ paths:
         required: true
       responses:
         "200":
-          description: Book updated successfully.
+          description: "Book updated successfully."
     post:
       summary: Create a book
       requestBody:
@@ -63,7 +63,7 @@ paths:
         required: true
       responses:
         "201":
-          description: Book created successfully.
+          description: "Book created successfully."
     delete:
       summary: Delete a book
       parameters:
@@ -76,7 +76,7 @@ paths:
           type: integer
       responses:
         "200":
-          description: Book deleted successfully
+          description: "Book deleted successfully"
   /authors:
     get:
       summary: List authors
@@ -107,7 +107,7 @@ paths:
         required: true
       responses:
         "200":
-          description: Author updated successfully.
+          description: "Author updated successfully."
     post:
       summary: Add a author
       requestBody:
@@ -118,7 +118,7 @@ paths:
         required: true
       responses:
         "201":
-          description: Author added successfully.
+          description: "Author added successfully."
     delete:
       summary: Delete a author
       parameters:
@@ -131,7 +131,7 @@ paths:
           type: integer
       responses:
         "200":
-          description: Author deleted successfully
+          description: "Author deleted successfully"
 components:
   schemas:
     Books:
