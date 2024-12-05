@@ -17,7 +17,7 @@ paths:
         explode: true
         schema:
           type: string
-      - name: startYear
+      - name: startDate
         in: query
         required: false
         style: form
@@ -25,7 +25,7 @@ paths:
         schema:
           type: string
           format: date
-      - name: endYear
+      - name: endDate
         in: query
         required: false
         style: form
