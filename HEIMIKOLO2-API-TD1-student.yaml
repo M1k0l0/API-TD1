@@ -14,12 +14,12 @@ paths:
           in: query
           schema:
             type: string
-        - name: startDate
+        - name: startYear
           in: query
           schema:
             type: string
             format: date
-        - name: endDate
+        - name: endYear
           in: query
           schema:
             type: string
