@@ -43,8 +43,7 @@ paths:
               $ref: "#/components/schemas/Groups"
       responses:
         "201":
-          description: Group created successfully.
-          
+          description: "Group created successfully."
     put:
       summary: Update a group
       requestBody:
@@ -55,7 +54,7 @@ paths:
               $ref: "#/components/schemas/Groups"
       responses:
         "200":
-          description: Group updated successfully.
+          description: "Group updated successfully."
           
     delete:
       summary: Delete a group
@@ -67,7 +66,7 @@ paths:
             type: integer
       responses: 
         '200':
-          description: Group deleted successfully
+          description: "Group deleted successfully"
           
 
   /student:
@@ -98,7 +97,7 @@ paths:
               $ref: "#/components/schemas/Students"
       responses:
         "201":
-          description: Student added successfully.
+          description: "Student added successfully."
         
     put:
       summary: Update a student
@@ -110,7 +109,7 @@ paths:
               $ref: "#/components/schemas/Students"
       responses:
         "200":
-          description: Student updated successfully.
+          description: "Student updated successfully."
           
     delete:
       summary: Delete a student
@@ -122,7 +121,7 @@ paths:
             type: integer
       responses: 
         '200':
-          description: Student deleted successfully
+          description: "Student deleted successfully"
       
 components:
   schemas:
