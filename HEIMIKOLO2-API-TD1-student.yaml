@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: Student management 
+  description: Student management 
+servers:
+  - url: https://virtserver.swaggerhub.com/HEIMIKOLO2/API-TD1/1.0.0
+paths:
+  /group:
+    get:
+      summary: List groups
+      parameters:
+        - name: groupName
+          in: query
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: List of groups 
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Groups'
+    post:
+      summary: Create a group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Groups"
+      responses:
+        "201":
+          description: Group created successfully.
+          
+    put:
+      summary: Update a group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Groups"
+      responses:
+        "200":
+          description: Group updated successfully.
+          
+    delete:
+      summary: Delete a group
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema: 
+            type: integer
+      responses: 
+        '200':
+          description: Group deleted successfully
+          
+
+  /student:
+    get:
+      summary: List students
+      parameters:
+        - name: studentName
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of student.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Students"
+                  
+    post:
+      summary: Add a student 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Students"
+      responses:
+        "201":
+          description: Student added successfully.
+        
+    put:
+      summary: Update a student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Students"
+      responses:
+        "200":
+          description: Student updated successfully.
+          
+    delete:
+      summary: Delete a student
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema: 
+            type: integer
+      responses: 
+        '200':
+          description: Student deleted successfully
+      
+components:
+  schemas:
+    Groups:
+      type: object
+      properties: 
+        id: 
+          type: integer
+        groupName:
+          type: string
+        groupYear: 
+          type: string
+          format: date
+        promotion:
+          type: string
+          enum: 
+            - G
+            - H
+            - J
+            - K
+        studentNb:
+          type: integer
+        students:
+          type: object
+        
+    Students:
+      type: object
+      properties:
+        id: 
+          type: integer
+        studentName:
+          type: string
+        sex:
+          type: string
+          enum:
+            - M
+            - F
+        birthdate:
+          type: string
+          format: date
+        reference:
+          type: string
+          example: 'STD23000'
+        group:
+          type: string
