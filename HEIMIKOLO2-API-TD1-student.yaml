@@ -6,7 +6,7 @@ info:
 servers:
   - url: https://virtserver.swaggerhub.com/HEIMIKOLO2/API-TD1/1.0.0
 paths:
-  /group:
+  /groups:
     get:
       summary: List groups
       parameters:
@@ -40,7 +40,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Groups"
+              $ref: "#/components/schemas/CreateGroup"
       responses:
         "201":
           description: "Group created successfully."
@@ -69,7 +69,7 @@ paths:
           description: "Group deleted successfully"
           
 
-  /student:
+  /students:
     get:
       summary: List students
       parameters:
@@ -94,7 +94,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Students"
+              $ref: "#/components/schemas/CreateStudent"
       responses:
         "201":
           description: "Student added successfully."
@@ -130,6 +130,12 @@ components:
       properties: 
         id: 
           type: integer
+      allOf:
+        - $ref: "#/components/schemas/CreateGroup"
+
+    CreateGroup:
+      type: object
+      properties: 
         groupName:
           type: string
         groupYear: 
@@ -145,13 +151,21 @@ components:
         studentNb:
           type: integer
         students:
-          type: object
+          type: array
+          items:
+            $ref: "#/components/schemas/Students"
         
     Students:
       type: object
       properties:
         id: 
           type: integer
+      allOf:
+        - $ref: "#/components/schemas/CreateStudent"
+
+    CreateStudent:
+      type: object
+      properties:
         studentName:
           type: string
         sex:
@@ -166,4 +180,6 @@ components:
           type: string
           example: 'STD23000'
         group:
-          type: string
+          type: object
+          allOf: 
+            - $ref: "#/components/schemas/Groups" 
